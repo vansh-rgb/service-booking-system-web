@@ -16,7 +16,10 @@ export class AuthService {
   }
 
   registerCompany(signupRequestDTO:any): Observable<any> {
-    return this.http.post(BASIC_URL + "companuy/signup", signupRequestDTO);
+    return this.http.post(BASIC_URL + "company/signup", signupRequestDTO, {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true  // Allows cookies and credentials to be sent
+    });
   }
 
 }

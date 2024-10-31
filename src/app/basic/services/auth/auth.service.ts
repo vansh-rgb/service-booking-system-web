@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
@@ -21,10 +20,7 @@ export class AuthService {
   }
 
   registerCompany(signupRequestDTO:any): Observable<any> {
-    return this.http.post(BASIC_URL + "company/sign-up", signupRequestDTO, {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true  // Allows cookies and credentials to be sent
-    });
+    return this.http.post(BASIC_URL + "company/sign-up", signupRequestDTO);
   }
 
     login(username:string, password:string){

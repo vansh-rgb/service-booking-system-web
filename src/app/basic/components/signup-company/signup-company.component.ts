@@ -28,7 +28,7 @@ export class SignupCompanyComponent {
       address : [null,[Validators.required]],
       phone: [null],
       password: [null,[Validators.required]],
-      checkpassword: [null,[Validators.email,Validators.required]]
+      checkPassword: [null,[Validators.email,Validators.required]]
     })
   }
 

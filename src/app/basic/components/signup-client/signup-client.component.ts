@@ -25,10 +25,10 @@ export class SignupClientComponent {
     this.validateForm=this.fb.group({
       email: [null,[Validators.email,Validators.required]],
       name: [null,[Validators.required]],
-      lastname : [null,[Validators.required]],
+      lastName : [null,[Validators.required]],
       phone: [null],
       password: [null,[Validators.required]],
-      checkpassword: [null,[Validators.email,Validators.required]]
+      checkPassword: [null,[Validators.email,Validators.required]]
     })
   }
 

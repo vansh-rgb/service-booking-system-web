@@ -19,6 +19,21 @@ export class CompanyService {
            headers : this.createAuthorizationHeader()
         })
   }
+  getAllAdsByUserId(): Observable<any>{
+    const userId = UserStorageService.getUserId();
+    return this.http.get(BASIC_URL + `api/company/ads/${userId}`,
+         {
+            headers : this.createAuthorizationHeader()
+         })
+   }
+
+   getAdById(adId:any): Observable<any>{
+    const userId = UserStorageService.getUserId();
+    return this.http.get(BASIC_URL + `api/company/ad/${adId}`,
+         {
+            headers : this.createAuthorizationHeader()
+         })
+   }
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
      return authHeaders.set(

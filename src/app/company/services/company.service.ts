@@ -28,12 +28,18 @@ export class CompanyService {
    }
 
    getAdById(adId:any): Observable<any>{
-    const userId = UserStorageService.getUserId();
     return this.http.get(BASIC_URL + `api/company/ad/${adId}`,
          {
             headers : this.createAuthorizationHeader()
          })
    }
+
+   updateAd(adId:any,adDTO:any): Observable<any>{
+      // const payload = { name: "Test Name" };
+    return this.http.put(BASIC_URL + `api/company/update/${adId}`,adDTO, {
+         headers : this.createAuthorizationHeader()
+      })
+    }
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
      return authHeaders.set(

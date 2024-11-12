@@ -25,6 +25,20 @@ export class ClientService {
                 })
           }
 
+     getAdDetailsByAdId(adId: any): Observable<any>{
+            return this.http.get(BASIC_URL + `api/client/ad/${adId}`,
+                 {
+                    headers : this.createAuthorizationHeader()
+                 })
+           }
+
+     bookService(bookDTO: any): Observable<any>{
+
+      return this.http.post(BASIC_URL + `api/client/book-service`, bookDTO, {
+                    headers : this.createAuthorizationHeader()
+                 })
+           }     
+
      createAuthorizationHeader(): HttpHeaders {
          let authHeaders: HttpHeaders = new HttpHeaders();
           return authHeaders.set(

@@ -4,7 +4,7 @@ import { ClientComponent } from './client.component';
 import { ClientDashboardComponent } from './pages/client-dashboard/client-dashboard.component';
 import { AdDetailComponent } from './pages/ad-detail/ad-detail.component';
 import { MyBookingsComponent } from './pages/my-bookings/my-bookings.component';
-import { ReviewComponent } from '../company/pages/review/review.component';
+import { ReviewComponent } from './pages/review/review.component';
 
 
 const routes: Routes = [

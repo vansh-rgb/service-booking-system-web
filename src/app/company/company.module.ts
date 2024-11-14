@@ -9,7 +9,7 @@ import { DemoNgZorroAntdModule } from '../DemoNgZorroAntdModule';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AllAdsComponent } from './pages/all-ads/all-ads.component';
 import { UpdateAdComponent } from './pages/update-ad/update-ad.component';
-import { ReviewComponent } from './pages/review/review.component';
+import { ReviewComponent } from '../client/pages/review/review.component';
 
 
 @NgModule({

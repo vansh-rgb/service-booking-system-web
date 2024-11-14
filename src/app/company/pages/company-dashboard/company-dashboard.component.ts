@@ -43,7 +43,4 @@ this.companyService.changedBookingStatus(bookingId,status).subscribe(res=>{
   )
 })
 }
-
-
-
 }

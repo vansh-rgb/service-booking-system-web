@@ -33,7 +33,6 @@ export class ClientService {
            }
 
      bookService(bookDTO: any): Observable<any>{
-
       return this.http.post(BASIC_URL + `api/client/book-service`, bookDTO, {
                     headers : this.createAuthorizationHeader()
                  })
@@ -45,6 +44,12 @@ export class ClientService {
                           headers : this.createAuthorizationHeader()
                        })
                  } 
+         
+      giveReview(reviewDTO: any): Observable<any>{
+         return this.http.post(BASIC_URL + `api/client/review`, reviewDTO, {
+                  headers : this.createAuthorizationHeader()
+               })
+         }
 
      createAuthorizationHeader(): HttpHeaders {
          let authHeaders: HttpHeaders = new HttpHeaders();
@@ -52,6 +57,7 @@ export class ClientService {
           'Authorization',
           'Bearer ' + UserStorageService.getToken()
           )
-
        }
+
+
 }

@@ -7,8 +7,7 @@ style="margin-top:20px; margin-bottom:20px; text-align:center;">
 </form>
 
 <div class="bg">
-
-  <div style="margin-top:10px;"  class="child" *ngFor=" let ad of ads" >
+  <div style="margin-top:10px;"  class="child" *ngFor="let ad of ads" >
     <div nz-row>
       <div nz-col nzSpan="8">
         <img class="profile" [src]="updateImg(ad.returnedImg)" style="height: 130px; width: 200px; border-radius: 10px;"/>
@@ -33,4 +32,11 @@ style="margin-top:20px; margin-bottom:20px; text-align:center;">
     </div>
   </div>
 
+  <nz-pagination 
+  class="pagination"
+  [nzTotal]="totalElements"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageNumber + 1"
+  (nzPageIndexChange)="onPageChange($event)">
+</nz-pagination>
 </div>

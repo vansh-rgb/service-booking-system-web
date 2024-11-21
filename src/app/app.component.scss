@@ -85,13 +85,6 @@ $white-one:#fcfcfc;
     top: 80px;
 }
 
-.mobile-sidenav.ant-layout-sider {
-    position: fixed;
-    top:0px;
-    background: $primary-color;
-    height: 100vh;
-    z-index: 999;
-}
 
 .ant-layout.ant-layout-has-sider {
     flex-direction: column;

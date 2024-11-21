@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -7,32 +7,61 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './client-dashboard.component.html',
   styleUrl: './client-dashboard.component.scss'
 })
-export class ClientDashboardComponent {
-  ads: any=[];
+export class ClientDashboardComponent implements OnInit {
+  ads: any[] = [];
   validateForm: FormGroup;
-  constructor(private clientService: ClientService,
-  private fb: FormBuilder){}
+  
+  // Pagination properties
+  totalElements = 0;
+  pageSize = 1;
+  pageNumber = 0;
+  searchTerm = '';
 
-  getAllAds(){
-  this.clientService.getAllAds().subscribe(res=>{
-  this.ads=res;
-  })
+  constructor(
+    private clientService: ClientService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit() {
+    this.validateForm = this.fb.group({
+      service: [null, [Validators.required]]
+    });
+    this.getAllAds();
   }
 
-  ngOnInit(){
-  this.validateForm= this.fb.group({
-  service:[null,[Validators.required]]
-  })
-  this.getAllAds();
+  getAllAds() {
+    this.clientService.getAllAds(this.pageNumber, this.pageSize)
+      .subscribe(res => {
+        this.ads = res.content;
+        this.totalElements = res.totalElements;
+      });
   }
 
-  searchAdByName(){
-  this.clientService.searchAdByName(this.validateForm.get(['service']).value).subscribe(res=>{
-  this.ads= res;
-  })
+  searchAdByName() {
+    this.searchTerm = this.validateForm.get('service').value;
+    this.pageNumber = 0; // Reset to first page on new search
+    this.clientService.searchAdByName(this.searchTerm, this.pageNumber, this.pageSize)
+      .subscribe(res => {
+        this.ads = res.content;
+        this.totalElements = res.totalElements;
+      });
   }
-  updateImg(img)
-  {
-    return "data:image/jpeg;base64,"+ img;
+
+  onPageChange(event: number) {
+    // Adjust page number (ng-zorro pagination is 1-indexed, but our backend is 0-indexed)
+    this.pageNumber = event - 1;
+    
+    if (this.searchTerm) {
+      this.clientService.searchAdByName(this.searchTerm, this.pageNumber, this.pageSize)
+        .subscribe(res => {
+          this.ads = res.content;
+        });
+    } else {
+      this.getAllAds();
+    }
+  }
+
+  updateImg(img) {
+    return "data:image/jpeg;base64," + img;
   }
 }

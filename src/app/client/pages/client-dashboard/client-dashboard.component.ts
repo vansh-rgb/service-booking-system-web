@@ -13,7 +13,7 @@ export class ClientDashboardComponent implements OnInit {
   
   // Pagination properties
   totalElements = 0;
-  pageSize = 1;
+  pageSize = 5;
   pageNumber = 0;
   searchTerm = '';
 

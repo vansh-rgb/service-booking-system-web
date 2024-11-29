@@ -42,7 +42,7 @@ export class CompanyService {
     }
 
     deletedAd(adId:any): Observable<any>{
-        return this.http.delete(BASIC_URL + `api/company/ad/${adId}`, {
+        return this.http.delete(BASIC_URL + `api/company/delete/${adId}`, {
              headers : this.createAuthorizationHeader()
           })
         }

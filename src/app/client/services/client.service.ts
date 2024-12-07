@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserStorageService } from '../../basic/services/storage/user-storage.service';
 
-const BASIC_URL = "http://localhost:8080/"
+const BASIC_URL = "http://localhost:8080/api/v1/"
 
 export interface PaginatedResponse<T> {
    content: T[];
@@ -25,7 +25,7 @@ export class ClientService {
          .set('page', page.toString())
          .set('size', size.toString());
 
-      return this.http.get<PaginatedResponse<any>>(BASIC_URL + `api/client/ads`, {
+      return this.http.get<PaginatedResponse<any>>(BASIC_URL + `client/ads`, {
          headers: this.createAuthorizationHeader(),
          params: params
       });
@@ -36,7 +36,7 @@ export class ClientService {
          .set('page', page.toString())
          .set('size', size.toString());
 
-      return this.http.get<PaginatedResponse<any>>(BASIC_URL + `api/client/search/${name}`, {
+      return this.http.get<PaginatedResponse<any>>(BASIC_URL + `client/search/${name}`, {
          headers: this.createAuthorizationHeader(),
          params: params
       });
@@ -44,27 +44,27 @@ export class ClientService {
 
    // Other methods remain the same
    getAdDetailsByAdId(adId: any): Observable<any> {
-      return this.http.get(BASIC_URL + `api/client/ad/${adId}`,
+      return this.http.get(BASIC_URL + `client/ad/${adId}`,
          {
             headers: this.createAuthorizationHeader()
          })
    }
 
    bookService(bookDTO: any): Observable<any> {
-      return this.http.post(BASIC_URL + `api/client/book-service`, bookDTO, {
+      return this.http.post(BASIC_URL + `client/book-service`, bookDTO, {
          headers: this.createAuthorizationHeader()
       })
    }
 
    getMyBookings(): Observable<any> {
       const userId = UserStorageService.getUserId();
-      return this.http.get(BASIC_URL + `api/client/my-bookings/${userId}`, {
+      return this.http.get(BASIC_URL + `client/my-bookings/${userId}`, {
          headers: this.createAuthorizationHeader()
       })
    }
 
    giveReview(reviewDTO: any): Observable<any> {
-      return this.http.post(BASIC_URL + `api/client/review`, reviewDTO, {
+      return this.http.post(BASIC_URL + `client/review`, reviewDTO, {
          headers: this.createAuthorizationHeader()
       })
    }

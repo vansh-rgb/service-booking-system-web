@@ -6,68 +6,68 @@ import { UserStorageService } from '../../basic/services/storage/user-storage.se
 const BASIC_URL = "http://localhost:8080/";
 
 @Injectable({
-  providedIn: 'root'
+   providedIn: 'root'
 })
 export class CompanyService {
 
-  constructor(private http: HttpClient) { }
+   constructor(private http: HttpClient) { }
 
-  postAd(adDTO:any): Observable<any>{
-   const userId = UserStorageService.getUserId();
-   return this.http.post(BASIC_URL + `api/company/ad/${userId}`, adDTO,
-        {
-           headers : this.createAuthorizationHeader()
-        })
-  }
-  getAllAdsByUserId(): Observable<any>{
-    const userId = UserStorageService.getUserId();
-    return this.http.get(BASIC_URL + `api/company/ads/${userId}`,
+   postAd(adDTO: any): Observable<any> {
+      const userId = UserStorageService.getUserId();
+      return this.http.post(BASIC_URL + `api/company/ad/${userId}`, adDTO,
          {
-            headers : this.createAuthorizationHeader()
+            headers: this.createAuthorizationHeader()
+         })
+   }
+   getAllAdsByUserId(): Observable<any> {
+      const userId = UserStorageService.getUserId();
+      return this.http.get(BASIC_URL + `api/company/ads/${userId}`,
+         {
+            headers: this.createAuthorizationHeader()
          })
    }
 
-   getAdById(adId:any): Observable<any>{
-    return this.http.get(BASIC_URL + `api/company/ad/${adId}`,
+   getAdById(adId: any): Observable<any> {
+      return this.http.get(BASIC_URL + `api/company/ad/${adId}`,
          {
-            headers : this.createAuthorizationHeader()
+            headers: this.createAuthorizationHeader()
          })
    }
 
-   updateAd(adId:any,adDTO:any): Observable<any>{
+   updateAd(adId: any, adDTO: any): Observable<any> {
       // const payload = { name: "Test Name" };
-    return this.http.put(BASIC_URL + `api/company/update/${adId}`,adDTO, {
-         headers : this.createAuthorizationHeader()
+      return this.http.put(BASIC_URL + `api/company/update/${adId}`, adDTO, {
+         headers: this.createAuthorizationHeader()
       })
-    }
+   }
 
-    deletedAd(adId:any): Observable<any>{
-        return this.http.delete(BASIC_URL + `api/company/ad/${adId}`, {
-             headers : this.createAuthorizationHeader()
-          })
-        }
+   deletedAd(adId: any): Observable<any> {
+      return this.http.delete(BASIC_URL + `api/company/ad/${adId}`, {
+         headers: this.createAuthorizationHeader()
+      })
+   }
 
-        getAllAdBookings(): Observable<any>{
-         const companyId= UserStorageService.getUserId();
-         return this.http.get(BASIC_URL + `api/company/bookings/${companyId}`,
-              {
-                 headers : this.createAuthorizationHeader()
-              })
-        }
-        changedBookingStatus(bookingId: number,status :string): Observable<any>{
-         return this.http.get(BASIC_URL + `api/company/booking/${bookingId}/${status}`,
-              {
-                 headers : this.createAuthorizationHeader()
-              })
-        }
-  createAuthorizationHeader(): HttpHeaders {
-    let authHeaders: HttpHeaders = new HttpHeaders();
-     return authHeaders.set(
-     'Authorization',
-     'Bearer ' + UserStorageService.getToken()
-     )
+   getAllAdBookings(): Observable<any> {
+      const companyId = UserStorageService.getUserId();
+      return this.http.get(BASIC_URL + `api/company/bookings/${companyId}`,
+         {
+            headers: this.createAuthorizationHeader()
+         })
+   }
+   changedBookingStatus(bookingId: number, status: string): Observable<any> {
+      return this.http.get(BASIC_URL + `api/company/booking/${bookingId}/${status}`,
+         {
+            headers: this.createAuthorizationHeader()
+         })
+   }
+   createAuthorizationHeader(): HttpHeaders {
+      let authHeaders: HttpHeaders = new HttpHeaders();
+      return authHeaders.set(
+         'Authorization',
+         'Bearer ' + UserStorageService.getToken()
+      )
 
-  }
+   }
 }
 
 

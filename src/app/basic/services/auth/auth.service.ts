@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { UserStorageService } from '../storage/user-storage.service';
 
 
-const BASIC_URL = "http://localhost:8080/";
+const BASIC_URL = "http://localhost:8080/api/v1/auth/";
 export const AUTH_HEADER = 'authorization';
 
 @Injectable({
